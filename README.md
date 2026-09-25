@@ -104,5 +104,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 <p align="center">
-  Made with ❤️ for the Social Media Community
+  Developed by Aselens Software
 </p>
