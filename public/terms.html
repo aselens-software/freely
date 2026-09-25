@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.svg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  
+  <link rel="alternate" hreflang="tr" href="https://freely.example.com/tr" />
+  <link rel="alternate" hreflang="en" href="https://freely.example.com/en" />
+  <link rel="alternate" hreflang="es" href="https://freely.example.com/es" />
+  <link rel="alternate" hreflang="ru" href="https://freely.example.com/ru" />
+  <link rel="alternate" hreflang="ar" href="https://freely.example.com/ar" />
+  <link rel="alternate" hreflang="x-default" href="https://freely.example.com/en" />
+
+  <title>Kullanım Koşulları - Freely</title>
+  <meta name="description"
+    content="Freely ile YouTube, Instagram, TikTok, Twitter (X), Pinterest, LinkedIn ve daha 1000'den fazla platformdan video ve mp3 indirin. Ücretsiz, reklamsız ve filigransız yüksek kaliteli indirme." />
+  <meta name="keywords"
+    content="video indir, mp3 dönüştürücü, youtube indir, tiktok filigransız indir, instagram reels indir, sosyal medya video indir" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Freely" />
+  <link rel="canonical" href="https://freely.com/" />
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Freely – Medyayı Yüksek Kalitede İndir" />
+  <meta property="og:description"
+    content="Tüm favori platformlarınızdan en yüksek kalitede, reklamsız ve kesintisiz video / ses indirme deneyimi. Hiçbir dosyayı sunucumuzda barındırmıyoruz, tam gizlilik." />
+  <meta property="og:url" content="https://freely.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- Animation Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+
+  <link rel="stylesheet" href="/style.css?v=8" />
+
+  <!-- JSON-LD Schema for Google SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Freely",
+    "description": "Profesyonel sosyal medya video ve ses indirme platformu. 1000'den fazla siteyi destekler.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- Glassmorphism Animated Background -->
+  <div class="mesh-bg" aria-hidden="true">
+    <div class="mesh-blob mesh-1"></div>
+    <div class="mesh-blob mesh-2"></div>
+    <div class="mesh-blob mesh-3"></div>
+    <div class="mesh-noise"></div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="Freely Ana Sayfa" style="margin-left: 15px;">
+        <span class="logo-icon">
+          <img src="/logo.svg" alt="Freely Logo" style="height: 40px; width: auto; object-fit: contain; margin-top: 10px;" />
+        </span>
+        <span class="logo-text"><span style="font-size: 0.6em; opacity: 0.7;font-weight: 500;">- Social Downloader</span></span>
+      </a>
+
+      
+      <div class="header-controls">
+        <button id="themeToggle" class="icon-btn mobile-only" aria-label="Tema Değiştir" style="margin-right: 10px;">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" style="display:none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button id="mobileMenuBtn" class="icon-btn mobile-only" style="margin-right: 15px;" aria-label="Menü">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <nav class="header-actions" id="headerActions">
+
+        <!-- Language Selector -->
+        <div class="custom-select" id="langSelectWrap" style="min-width: 60px; margin-right: 5px;" role="listbox"
+          aria-label="Dil seçimi">
+          <div class="custom-select-trigger" id="langSelectTrigger" tabindex="0" role="button"
+            style="padding: 6px 10px;">
+            <span class="custom-select-trigger-text" id="langSelectText" style="font-weight:600;">TR</span>
+          </div>
+          <div class="custom-select-dropdown" id="langSelectDropdown" role="listbox">
+            <!-- Populated by app.js -->
+          </div>
+        </div>
+        <a href="/#about" class="text-btn" data-i18n="navAbout">Hakkımızda</a>
+        <a href="/#faq" class="text-btn" data-i18n="navFaq">SSS</a>
+        <div class="mobile-row-btns">
+        <button id="settingsBtn" class="icon-btn" aria-label="Ayarlar" title="Ayarlar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
+        </button>
+        <button id="themeBtn" class="icon-btn" aria-label="Tema Değiştir" title="Tema Değiştir">
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+        <div class="card content-card" style="max-width: 800px; margin: 40px auto; text-align: left; padding: 40px;">
+            <h1 style="margin-bottom: 30px; font-size: 2rem; color: var(--text-primary); text-align: center;">Kullanım Koşulları</h1>
+            <div style="color: var(--text-secondary); line-height: 1.6;">
+    <h3 style="color:var(--text-primary); margin-top: 20px;">1. Taraflar ve Kapsam</h3>
+    <p>Bu Kullanım Koşulları sözleşmesi (bundan böyle "Sözleşme" olarak anılacaktır), Freely ("Site", "Biz", "Platform") hizmetlerini kullanan her birey veya kurum ("Kullanıcı") ile Freely yönetimi (Aselens) arasında akdedilmiştir. Siteyi ziyaret ederek veya sunduğu hizmetleri kullanarak bu sözleşmenin tamamını kayıtsız şartsız kabul etmiş sayılırsınız.</p>
+    
+    <h3 style="color:var(--text-primary); margin-top: 20px;">2. Hizmetin Tanımı ve Amacı</h3>
+    <p>Freely, kullanıcıların halka açık (public) olarak paylaşılmış, yasal erişime açık ve telif hakkı kısıtlaması bulunmayan multimedya içeriklerini (video, ses) cihazlarına indirmelerine olanak sağlayan çevrimiçi bir araçtır. Amacımız arşivleme, çevrimdışı eğitim ve kişisel kullanım ihtiyaçlarına pratik bir çözüm sunmaktır.</p>
+
+    <h3 style="color:var(--text-primary); margin-top: 20px;">3. Fikri Mülkiyet ve Telif Hakları</h3>
+    <p>Site aracılığıyla indirilen tüm içeriklerin fikri mülkiyet ve telif hakları ilgili içerik oluşturucularına ve yayınlanan platformlara aittir. Kullanıcı, Freely üzerinden indirdiği içerikleri:</p>
+    <ul>
+        <li>Kendi mülkiyetindeymiş gibi ticari amaçla kullanamaz,</li>
+        <li>Telif hakkı sahiplerinin izni olmadan yeniden dağıtamaz veya kopyalayamaz,</li>
+        <li>İlgili sosyal ağların veya video barındırma platformlarının yerel Kullanım Koşulları'nı (ToS) ihlal edecek şekilde işleyemez.</li>
+    </ul>
+    <p>Olası bir telif hakkı ihlalinden doğacak tüm yasal ve cezai yükümlülükler münhasıran işlemi gerçekleştiren kullanıcıya aittir. Freely, kullanıcı eylemlerinden sorumlu tutulamaz.</p>
+
+    <h3 style="color:var(--text-primary); margin-top: 20px;">4. Sorumluluğun Reddi (Disclaimer)</h3>
+    <p>Freely hizmetleri "olduğu gibi" ve "mevcut olduğu kadarıyla" prensibiyle sunulmaktadır. Sistemin kesintisiz, tamamen hatasız veya güvenli çalışacağına dair hiçbir açık veya zımni garanti verilmez. Sunucularımızda içerik barındırılmadığı için platformumuz doğrudan bir içerik sağlayıcısı veya dağıtıcısı konumunda değildir.</p>
+
+    <h3 style="color:var(--text-primary); margin-top: 20px;">5. Değişiklik Hakları</h3>
+    <p>Aselens ve Freely yönetimi, bu Kullanım Koşulları'nı dilediği zaman, önceden haber vermeksizin değiştirme, kısıtlama veya belirli hizmetleri tamamen durdurma hakkını saklı tutar. Güncel koşullar bu sayfada yayınlandığı an itibariyle geçerlilik kazanır.</p>
+</div>
+        </div>
+    </main>
+    <footer class="site-footer">
+      <div data-i18n="footerText">Telif Hakları &copy; 2026 - Tüm hakları saklıdır.</div>
+      <div><a href="https://aselens.com" target="_blank" rel="noopener">Aselens℠</a> tarafından sevgiyle yapıldı.</div>
+      <div class="footer-links">
+        <a href="/nasil-kullanilir" data-i18n="howToUse">Nasıl Kullanılır</a>
+        <a href="https://aselens.com/tr/contact" target="_blank" data-i18n="contactUs">İletişim</a>
+        <a href="/kullanim-kosullari" data-i18n="terms">Kullanım Koşulları</a>
+        <a href="/gizlilik-politikasi" data-i18n="privacy">Gizlilik Politikası</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-overlay" id="settingsOverlay" aria-hidden="true"></div>
+  <aside class="settings-panel animate__animated" id="settingsPanel" role="dialog" aria-modal="true"
+    aria-label="Ayarlar" aria-hidden="true">
+    <div class="settings-header">
+      <h2 class="settings-title" data-i18n="settingsTitle">Ayarlar</h2>
+      <button id="closeSettingsBtn" class="icon-btn" aria-label="Ayarları kapat">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="settings-body">
+      <div class="settings-group">
+        <h3 class="settings-group-title" data-i18n="defaultQuality">Varsayılan Kalite</h3>
+        <div class="settings-radio-group" id="defaultQualityGroup" role="radiogroup" aria-label="Varsayılan kalite">
+          <label class="radio-label">
+            <input type="radio" name="defaultQuality" value="best" checked />
+            <span class="radio-custom"></span><span data-i18n="bestQuality">En İyi (Otomatik)</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="defaultQuality" value="1080" />
+            <span class="radio-custom"></span>
+            1080p
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="defaultQuality" value="720" />
+            <span class="radio-custom"></span>
+            720p
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="defaultQuality" value="480" />
+            <span class="radio-custom"></span>
+            480p
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="defaultQuality" value="audio" />
+            <span class="radio-custom"></span><span data-i18n="audioOnly">Yalnızca Ses</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3 class="settings-group-title" data-i18n="videoFormat">Video Formatı</h3>
+        <div class="settings-radio-group" role="radiogroup" aria-label="Video formatı">
+          <label class="radio-label">
+            <input type="radio" name="outputFormat" value="mp4" checked />
+            <span class="radio-custom"></span>
+            MP4
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="outputFormat" value="webm" />
+            <span class="radio-custom"></span>
+            WebM
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="outputFormat" value="mkv" />
+            <span class="radio-custom"></span>
+            MKV
+          </label>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3 class="settings-group-title" data-i18n="audioFormat">Ses Formatı</h3>
+        <div class="settings-radio-group" role="radiogroup" aria-label="Ses formatı">
+          <label class="radio-label">
+            <input type="radio" name="audioFormat" value="mp3" checked />
+            <span class="radio-custom"></span>
+            MP3
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="audioFormat" value="m4a" />
+            <span class="radio-custom"></span>
+            M4A
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="audioFormat" value="opus" />
+            <span class="radio-custom"></span>
+            Opus
+          </label>
+        </div>
+      </div>
+
+      <!-- Advanced Settings Section -->
+      <div class="settings-group">
+        <h3 class="settings-group-title" data-i18n="advancedSettings">Gelişmiş Ayarlar</h3>
+
+        <div class="settings-row-select">
+          <label class="setting-label" data-i18n="audioBitrate">Ses Bitrate</label>
+          <div class="custom-select" id="bitrateSelectWrap" role="listbox">
+            <div class="custom-select-trigger" id="bitrateSelectTrigger" tabindex="0" role="button">
+              <span class="custom-select-trigger-text" id="bitrateSelectText">256 kbps</span>
+            </div>
+            <div class="custom-select-dropdown" id="bitrateSelectDropdown">
+              <div class="custom-option" data-value="128k">128 kbps</div>
+              <div class="custom-option" data-value="192k">192 kbps</div>
+              <div class="custom-option selected" data-value="256k">256 kbps (Önerilen)</div>
+              <div class="custom-option" data-value="320k">320 kbps (Yüksek)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-row-select" style="margin-top: 15px;">
+          <label class="setting-label" data-i18n="videoCodec">Video Codec</label>
+          <div class="custom-select" id="codecSelectWrap" role="listbox">
+            <div class="custom-select-trigger" id="codecSelectTrigger" tabindex="0" role="button">
+              <span class="custom-select-trigger-text" id="codecSelectText">Otomatik</span>
+            </div>
+            <div class="custom-select-dropdown" id="codecSelectDropdown">
+              <div class="custom-option selected" data-value="auto">Otomatik</div>
+              <div class="custom-option" data-value="h264">H.264 (MP4 - En Uyumlu)</div>
+              <div class="custom-option" data-value="h265">H.265 (HEVC - Yüksek Verim)</div>
+              <div class="custom-option" data-value="av1">AV1 (En Yeni - Küçük Dosya)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="toggle-row" style="margin-top: 15px;">
+          <span data-i18n="freeFormats">Öncelikli Özgür Formatlar (VP9/WebM)</span>
+          <button id="freeFormatsToggle" class="theme-toggle-pill" role="switch" aria-checked="false">
+            <span class="toggle-knob"></span>
+          </button>
+        </div>
+
+        <div class="toggle-row" style="margin-top: 15px;">
+          <span data-i18n="sponsorBlock">SponsorBlock (Reklam Bölümlerini Atla)</span>
+          <button id="sponsorBlockToggle" class="theme-toggle-pill" role="switch" aria-checked="false">
+            <span class="toggle-knob"></span>
+          </button>
+        </div>
+
+        <div class="toggle-row" style="margin-top: 15px;">
+          <span data-i18n="embedSubs">Altyazıları Göm (Destekleniyorsa)</span>
+          <button id="embedSubsToggle" class="theme-toggle-pill" role="switch" aria-checked="false">
+            <span class="toggle-knob"></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3 class="settings-group-title" data-i18n="appearance">Görünüm</h3>
+        <div class="toggle-row">
+          <span data-i18n="darkTheme">Karanlık Tema</span>
+          <button id="settingsThemeToggle" class="theme-toggle-pill" role="switch" aria-checked="true"
+            aria-label="Karanlık tema">
+            <span class="toggle-knob"></span>
+          </button>
+        </div>
+        <div class="toggle-row">
+          <span data-i18n="animations">Animasyonlar</span>
+          <button id="animationsToggle" class="theme-toggle-pill active" role="switch" aria-checked="true"
+            aria-label="Animasyonlar">
+            <span class="toggle-knob"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-footer">
+      <p>Freely v1.0 · yt-dlp tabanlı</p>
+    </div>
+  </aside>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toastContainer" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Vanta & Tilt -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Setup Vanta HALO
+      window.vantaEffect = VANTA.HALO({
+        el: ".mesh-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        xOffset: 0.1,
+        yOffset: -0.1,
+        size: 1.5,
+        backgroundColor: document.documentElement.getAttribute('data-theme') === 'dark' ? 0x0f172a : 0xe0e7ff,
+      });
+
+      // Update background color on theme change
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === "data-theme") {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (window.vantaEffect) {
+              window.vantaEffect.setOptions({
+                backgroundColor: isDark ? 0x0f172a : 0xe0e7ff
+              });
+            }
+          }
+        });
+      });
+      observer.observe(document.documentElement, { attributes: true });
+
+      // Tilt initialization for the card
+      VanillaTilt.init(document.querySelector(".card"), {
+        max: 3,
+        speed: 1000,
+        glare: true,
+        "max-glare": 0.15,
+        gyroscope: true,
+        scale: 1.02
+      });
+    });
+  </script>
+
+  <script src="/app.js?v=8"></script>
+</body>
+
+</html>

@@ -1,12 +1,4 @@
 {
   "theme": "light",
-  "languages": [
-    "tr",
-    "en",
-    "es",
-    "ru",
-    "ar"
-  ],
-  "adsenseScript": "",
-  "adminPassword": "admin"
+  "adsenseScript": "<script>console.log(\"ads\");</script>"
 }

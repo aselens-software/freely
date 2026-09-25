@@ -2,11 +2,13 @@
 <html lang="tr" data-theme="dark">
 
 <head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.svg" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hakkımızda - Aselens Sosyal Medya İndirici</title>
+    <title>Hakkımızda - Freely Sosyal Medya İndirici</title>
     <meta name="description"
-        content="Aselens, tüm sosyal medya platformlarından video ve ses indirmenizi sağlayan ücretsiz ve reklamsız bir araştırma aracıdır. Hakkımızda detaylı bilgi alın.">
+        content="Freely, tüm sosyal medya platformlarından video ve ses indirmenizi sağlayan ücretsiz ve reklamsız bir araştırma aracıdır. Hakkımızda detaylı bilgi alın.">
 
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -14,21 +16,38 @@
 </head>
 
 <body class="seo-page">
-    <!-- Animation background mapping -->
-    <div class="bg-canvas" aria-hidden="true">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+    <!-- Glassmorphism Animated Background -->
+    <div class="mesh-bg" aria-hidden="true">
+        <div class="mesh-blob mesh-1"></div>
+        <div class="mesh-blob mesh-2"></div>
+        <div class="mesh-blob mesh-3"></div>
+        <div class="mesh-noise"></div>
     </div>
 
     <header class="header">
-        <div class="header-inner">
-            <a href="/" class="logo" aria-label="Aselens Ana Sayfa">
-                <span class="logo-text">Aselens</span>
-            </a>
-            <nav class="header-actions">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="Freely Ana Sayfa" style="margin-left: 15px;">
+        <span class="logo-icon">
+          <img src="/logo.svg" alt="Freely Logo" style="height: 48px; width: auto; object-fit: contain;" />
+        </span>
+        <span class="logo-text"><span style="font-size: 0.6em; opacity: 0.7;font-weight: 500;">- Social Downloader</span></span>
+      </a>
+
+      
+      <div class="header-controls">
+        <button id="themeToggle" class="icon-btn mobile-only" aria-label="Tema Değiştir" style="margin-right: 10px;">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" style="display:none;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button id="mobileMenuBtn" class="icon-btn mobile-only" style="margin-right: 15px;" aria-label="Menü">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <nav class="header-actions" id="headerActions">
+
                 <a href="/" style="color:#fff; text-decoration:none;">Ana Sayfa</a>
-                <a href="/faq" style="color:#fff; text-decoration:none; margin-left:15px;">SSS</a>
+                <a href="/#faq" style="color:#fff; text-decoration:none; margin-left:15px;" data-i18n="navFaq">SSS</a>
             </nav>
         </div>
     </header>
@@ -37,18 +56,17 @@
         <div id="adsense-slot-top" class="ads-container"></div>
         <div class="card content-card"
             style="max-width: 800px; margin: 0 auto; text-align: left; animation: fadeUp 0.6s ease;">
-            <h1
-                style="margin-bottom: 20px; font-size: 2.5rem; background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
-                Aselens Hakkında</h1>
+            <h1 style="margin-bottom: 20px; font-size: 2.5rem; color: var(--text-primary);">
+                Freely Hakkında</h1>
 
             <p style="margin-bottom: 20px; line-height: 1.8; color: var(--text-secondary);">
-                Aselens, 1000'den fazla sosyal medya ve video paylaşım platformundan yüksek kaliteli içerikleri
+                Freely, 1000'den fazla sosyal medya ve video paylaşım platformundan yüksek kaliteli içerikleri
                 cihazınıza indirmenize olanak tanıyan yeni nesil bir web aracıdır. Vizyonumuz, kullanıcılara
                 internetteki
                 medyayı tamamen özgür, hızlı, reklamsız ve kesintisiz şekilde erişilebilir kılmaktır.
             </p>
 
-            <h2 style="margin: 30px 0 15px; font-size: 1.5rem;">Neden Aselens?</h2>
+            <h2 style="margin: 30px 0 15px; font-size: 1.5rem;">Neden Freely?</h2>
             <ul style="margin-left: 20px; color: var(--text-secondary); line-height: 1.8;">
                 <li><strong>Premium Animasyon Deneyimi:</strong> Modern altyapımız, sadece bir araç kullanmaktan öte
                     size bir deneyim sunar.</li>
@@ -62,7 +80,7 @@
 
             <h2 style="margin: 30px 0 15px; font-size: 1.5rem;">Misyonumuz</h2>
             <p style="line-height: 1.8; color: var(--text-secondary);">
-                Aselens, sadece basit bir indirici değil; internet üzerindeki medya formatları arasındaki bariyerleri
+                Freely, sadece basit bir indirici değil; internet üzerindeki medya formatları arasındaki bariyerleri
                 kaldıran,
                 kullanıcılarına yüksek kalitede bir vizyon sunan profesyonel bir ekosistemdir. Tasarım, mühendislik ve
                 hızı
@@ -94,6 +112,40 @@
                 }
             });
     </script>
+
+  <!-- Vanta -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      window.vantaEffect = VANTA.HALO({
+        el: ".mesh-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        xOffset: 0.1,
+        yOffset: -0.1,
+        size: 1.5,
+        backgroundColor: document.documentElement.getAttribute('data-theme') === 'dark' ? 0x0f172a : 0xe0e7ff,
+      });
+
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === "data-theme") {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (window.vantaEffect) {
+              window.vantaEffect.setOptions({
+                backgroundColor: isDark ? 0x0f172a : 0xe0e7ff
+              });
+            }
+          }
+        });
+      });
+      observer.observe(document.documentElement, { attributes: true });
+    });
+  </script>
 </body>
 
 </html>

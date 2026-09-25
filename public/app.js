@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   Aselens – App Logic
+   Freely – App Logic
    ═══════════════════════════════════════════════════════════ */
 
 'use strict';
@@ -38,22 +38,22 @@ const toastCont = document.getElementById('toastContainer');
 
 // ── Platform Icons (emoji) ──────────────────────────────────
 const PLATFORM_ICONS = {
-    youtube: '▶️',
-    instagram: '📸',
-    tiktok: '🎵',
-    twitter: '🐦',
-    vk: '💬',
-    dailymotion: '🎬',
-    facebook: 'f',
-    twitch: '🎮',
-    reddit: '🤖',
-    soundcloud: '☁️',
-    bilibili: 'B',
-    pinterest: '📌',
-    vimeo: 'V',
-    linkedin: '💼',
-    threads: '🧵',
-    generic: '🔗'
+    youtube: '<img src="https://cdn.simpleicons.org/youtube/FF0000" width="20" height="20">',
+    instagram: '<img src="https://cdn.simpleicons.org/instagram/E4405F" width="20" height="20">',
+    tiktok: '<img src="https://cdn.simpleicons.org/tiktok" width="20" height="20" class="adapt-icon">',
+    twitter: '<img src="https://cdn.simpleicons.org/x" width="20" height="20" class="adapt-icon">',
+    vk: '<img src="https://cdn.simpleicons.org/vk/0077FF" width="20" height="20">',
+    dailymotion: '<img src="https://cdn.simpleicons.org/dailymotion/0066DC" width="20" height="20">',
+    facebook: '<img src="https://cdn.simpleicons.org/facebook/1877F2" width="20" height="20">',
+    twitch: '<img src="https://cdn.simpleicons.org/twitch/9146FF" width="20" height="20">',
+    reddit: '<img src="https://cdn.simpleicons.org/reddit/FF4500" width="20" height="20">',
+    soundcloud: '<img src="https://cdn.simpleicons.org/soundcloud/FF3300" width="20" height="20">',
+    bilibili: '<img src="https://cdn.simpleicons.org/bilibili/00A1D6" width="20" height="20">',
+    pinterest: '<img src="https://cdn.simpleicons.org/pinterest/E60023" width="20" height="20">',
+    vimeo: '<img src="https://cdn.simpleicons.org/vimeo/1AB7EA" width="20" height="20">',
+    linkedin: '<svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+    threads: '<img src="https://cdn.simpleicons.org/threads" width="20" height="20" class="adapt-icon">',
+    generic: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>'
 };
 
 const PLATFORM_REGEX = {
@@ -84,22 +84,59 @@ const PLATFORM_NAMES = {
 };
 
 const settings = {
-    theme: localStorage.getItem('aselens-theme') || 'dark',
-    defaultQuality: localStorage.getItem('aselens-quality') || 'best',
-    outputFormat: localStorage.getItem('aselens-format') || 'mp4',
-    audioFormat: localStorage.getItem('aselens-audio') || 'mp3',
-    animations: localStorage.getItem('aselens-anim') !== 'false',
-    audioBitrate: localStorage.getItem('aselens-bitrate') || '256k',
-    videoCodec: localStorage.getItem('aselens-codec') || 'auto',
-    freeFormats: localStorage.getItem('aselens-free') === 'true',
-    sponsorBlock: localStorage.getItem('aselens-sponsor') === 'true',
-    embedSubs: localStorage.getItem('aselens-subs') === 'true',
-    lang: localStorage.getItem('aselens-lang') || 'tr'
+    theme: localStorage.getItem('freely-theme') || 'dark',
+    defaultQuality: localStorage.getItem('freely-quality') || 'best',
+    outputFormat: localStorage.getItem('freely-format') || 'mp4',
+    audioFormat: localStorage.getItem('freely-audio') || 'mp3',
+    animations: localStorage.getItem('freely-anim') !== 'false',
+    audioBitrate: localStorage.getItem('freely-bitrate') || '256k',
+    videoCodec: localStorage.getItem('freely-codec') || 'auto',
+    freeFormats: localStorage.getItem('freely-free') === 'true',
+    sponsorBlock: localStorage.getItem('freely-sponsor') === 'true',
+    embedSubs: localStorage.getItem('freely-subs') === 'true',
+    lang: localStorage.getItem('freely-lang') || 'tr'
 };
 
 // ── i18n Dictionary ─────────────────────────────────────────
 const i18n = {
     tr: {
+        navPlaylist: "Playlist İndir",
+        navAbout: "Hakkımızda",
+        navFaq: "SSS",
+        qualityLabel: "Kalite",
+        defaultQuality: "Varsayılan Kalite",
+        bestQuality: "En İyi (Otomatik)",
+        audioOnly: "Yalnızca Ses",
+        videoFormat: "Video Formatı",
+        audioFormat: "Ses Formatı",
+        darkTheme: "Karanlık Tema",
+        animations: "Animasyonlar",
+        navHowTo: "Nasıl Kullanılır",
+        featuresTitle: "Neden Freely?",
+        feat1Title: "1000+ Platform",
+        feat1Desc: "YouTube, Instagram, TikTok ve daha fazlasından medya indirin.",
+        feat2Title: "Sınırsız ve Ücretsiz",
+        feat2Desc: "Hiçbir ücret ödemeden, kısıtlama olmadan tüm medyaları en yüksek kalitede cihazınıza indirin.",
+        feat3Title: "Güvenli ve Gizli",
+        feat3Desc: "Dosyalarınız indirme sonrası sunucularımızdan anında silinir. Tamamen güvendesiniz.",
+        blogTitle: "Son Yazılar",
+        viewAllBlog: "Tüm Yazıları Gör",
+        faqTitle: "Sıkça Sorulan Sorular",
+        faqQ1: "Freely tamamen ücretsiz mi?",
+        faqA1: "Evet, Freely tamamen ücretsizdir ve herhangi bir indirme limiti barındırmaz.",
+        faqQ2: "Hangi platformlar destekleniyor?",
+        faqA2: "YouTube, Instagram, TikTok, Twitter, Reddit, Facebook, Twitch başta olmak üzere 1000'den fazla websitesi desteklenmektedir.",
+        faqQ3: "İndirdiğim videolar sunucuda saklanıyor mu?",
+        faqA3: "Hayır. Freely gizlilik odaklıdır. Dosyalarınız indirildikten kısa bir süre sonra sunucudan kalıcı olarak silinir.",
+        footerText: "Telif Hakları © 2026 - Tüm hakları saklıdır.",
+        madeBy: "Aselens℠ tarafından sevgiyle yapıldı.",
+        howToUseTitle: "Nasıl Kullanılır?",
+        aboutUsTitle: "Hakkımızda",
+
+        howToUse: "Nasıl Kullanılır",
+        contactUs: "İletişim",
+        terms: "Kullanım Koşulları",
+        privacy: "Gizlilik Politikası",
         heroBadge: "1000+ Platform Destekleniyor",
         heroTitle1: "Medyayı", heroTitle2: "Özgürce", heroTitle3: "İndir",
         heroSub: "Tüm sosyal medya hesaplarından yüksek kaliteli içerikleri tek bir tıkla cihazınıza kaydedin. Tamamen ücretsiz ve sınırsız.",
@@ -121,6 +158,43 @@ const i18n = {
         toastOptUrlErr: "Geçersiz URL formatı."
     },
     en: {
+        navPlaylist: "Playlist Downloader",
+        navAbout: "About Us",
+        navFaq: "FAQ",
+        qualityLabel: "Quality",
+        defaultQuality: "Default Quality",
+        bestQuality: "Best (Auto)",
+        audioOnly: "Audio Only",
+        videoFormat: "Video Format",
+        audioFormat: "Audio Format",
+        darkTheme: "Dark Theme",
+        animations: "Animations",
+        navHowTo: "How to Use",
+        featuresTitle: "Why Freely?",
+        feat1Title: "1000+ Platforms",
+        feat1Desc: "Download media from YouTube, Instagram, TikTok and many more.",
+        feat2Title: "Unlimited & Free",
+        feat2Desc: "Download any media at the highest quality with no limits and no fees.",
+        feat3Title: "Secure & Private",
+        feat3Desc: "Your files are deleted from our servers immediately after download. You are completely safe.",
+        blogTitle: "Latest Posts",
+        viewAllBlog: "View All Posts",
+        faqTitle: "Frequently Asked Questions",
+        faqQ1: "Is Freely completely free?",
+        faqA1: "Yes, Freely is completely free and has no download limits.",
+        faqQ2: "Which platforms are supported?",
+        faqA2: "Over 1000 websites are supported, primarily YouTube, Instagram, TikTok, Twitter, Reddit, Facebook, and Twitch.",
+        faqQ3: "Are my downloaded videos stored on the server?",
+        faqA3: "No. Freely is privacy-focused. Your files are permanently deleted from the server shortly after being downloaded.",
+        footerText: "Copyright © 2026 - All rights reserved.",
+        madeBy: "Made with love by Aselens℠.",
+        howToUseTitle: "How to Use?",
+        aboutUsTitle: "About Us",
+
+        howToUse: "How to Use",
+        contactUs: "Contact",
+        terms: "Terms of Use",
+        privacy: "Privacy Policy",
         heroBadge: "1000+ Platforms Supported",
         heroTitle1: "Download Media", heroTitle2: "Freely", heroTitle3: "",
         heroSub: "Save high-quality content from all social media accounts to your device in seconds. Ad-free and unlimited.",
@@ -142,6 +216,42 @@ const i18n = {
         toastOptUrlErr: "Invalid URL format."
     },
     es: {
+        navPlaylist: "Descargar Playlist",
+        navAbout: "Sobre Nosotros",
+        navFaq: "FAQ",
+        qualityLabel: "Calidad",
+        defaultQuality: "Calidad Predeterminada",
+        bestQuality: "Mejor (Auto)",
+        audioOnly: "Solo Audio",
+        videoFormat: "Formato de Video",
+        audioFormat: "Formato de Audio",
+        darkTheme: "Tema Oscuro",
+        animations: "Animaciones",
+        featuresTitle: "Why Freely?",
+        feat1Title: "1000+ Platforms",
+        feat1Desc: "Download media from YouTube, Instagram, TikTok and many more.",
+        feat2Title: "Unlimited & Free",
+        feat2Desc: "Download any media at the highest quality with no limits and no fees.",
+        feat3Title: "Secure & Private",
+        feat3Desc: "Your files are deleted from our servers immediately after download. You are completely safe.",
+        blogTitle: "Latest Posts",
+        viewAllBlog: "View All Posts",
+        faqTitle: "Frequently Asked Questions",
+        faqQ1: "Is Freely completely free?",
+        faqA1: "Yes, Freely is completely free and has no download limits.",
+        faqQ2: "Which platforms are supported?",
+        faqA2: "Over 1000 websites are supported, primarily YouTube, Instagram, TikTok, Twitter, Reddit, Facebook, and Twitch.",
+        faqQ3: "Are my downloaded videos stored on the server?",
+        faqA3: "No. Freely is privacy-focused. Your files are permanently deleted from the server shortly after being downloaded.",
+        footerText: "Copyright © 2026 - All rights reserved.",
+        madeBy: "Made with love by Aselens℠.",
+        howToUseTitle: "How to Use?",
+        aboutUsTitle: "About Us",
+
+        howToUse: "How to Use",
+        contactUs: "Contact",
+        terms: "Terms of Use",
+        privacy: "Privacy Policy",
         heroBadge: "Más de 1000 plataformas compatibles",
         heroTitle1: "Descarga Medios", heroTitle2: "Libremente", heroTitle3: "",
         heroSub: "Guarde contenido de alta calidad de todas las redes sociales en su dispositivo. Sin publicidad y sin límites.",
@@ -152,6 +262,9 @@ const i18n = {
         settingsTitle: "Configuración",
         advancedSettings: "Configuración Avanzada",
         audioBitrate: "Bitrate de Audio",
+        videoCodec: "Códec de Video",
+        freeFormats: "Formatos Libres (VP9/WebM)",
+        sponsorBlock: "SponsorBlock (Saltar Anuncios)",
         embedSubs: "Incrustar Subtítulos",
         appearance: "Apariencia",
         toastPasteSuccess: "Enlace pegado",
@@ -160,6 +273,42 @@ const i18n = {
         toastOptUrlErr: "Formato de URL no válido."
     },
     ru: {
+        navPlaylist: "Скачать Плейлист",
+        navAbout: "О нас",
+        navFaq: "ЧаВО",
+        qualityLabel: "Качество",
+        defaultQuality: "Качество по умолчанию",
+        bestQuality: "Лучшее (Авто)",
+        audioOnly: "Только аудио",
+        videoFormat: "Формат видео",
+        audioFormat: "Формат аудио",
+        darkTheme: "Темная тема",
+        animations: "Анимации",
+        featuresTitle: "Why Freely?",
+        feat1Title: "1000+ Platforms",
+        feat1Desc: "Download media from YouTube, Instagram, TikTok and many more.",
+        feat2Title: "Unlimited & Free",
+        feat2Desc: "Download any media at the highest quality with no limits and no fees.",
+        feat3Title: "Secure & Private",
+        feat3Desc: "Your files are deleted from our servers immediately after download. You are completely safe.",
+        blogTitle: "Latest Posts",
+        viewAllBlog: "View All Posts",
+        faqTitle: "Frequently Asked Questions",
+        faqQ1: "Is Freely completely free?",
+        faqA1: "Yes, Freely is completely free and has no download limits.",
+        faqQ2: "Which platforms are supported?",
+        faqA2: "Over 1000 websites are supported, primarily YouTube, Instagram, TikTok, Twitter, Reddit, Facebook, and Twitch.",
+        faqQ3: "Are my downloaded videos stored on the server?",
+        faqA3: "No. Freely is privacy-focused. Your files are permanently deleted from the server shortly after being downloaded.",
+        footerText: "Copyright © 2026 - All rights reserved.",
+        madeBy: "Made with love by Aselens℠.",
+        howToUseTitle: "How to Use?",
+        aboutUsTitle: "About Us",
+
+        howToUse: "How to Use",
+        contactUs: "Contact",
+        terms: "Terms of Use",
+        privacy: "Privacy Policy",
         heroBadge: "Поддержка 1000+ платформ",
         heroTitle1: "Скачивайте медиа", heroTitle2: "Свободно", heroTitle3: "",
         heroSub: "Сохраняйте высококачественный контент из всех социальных сетей на свое устройство. Без рекламы и без ограничений.",
@@ -170,6 +319,9 @@ const i18n = {
         settingsTitle: "Настройки",
         advancedSettings: "Расширенные Настройки",
         audioBitrate: "Битрейт аудио",
+        videoCodec: "Видеокодек",
+        freeFormats: "Свободные форматы (VP9/WebM)",
+        sponsorBlock: "SponsorBlock (Пропуск рекламы)",
         embedSubs: "Встроить субтитры",
         appearance: "Внешний вид",
         toastPasteSuccess: "Ссылка вставлена",
@@ -178,6 +330,42 @@ const i18n = {
         toastOptUrlErr: "Неверный формат URL."
     },
     ar: {
+        navPlaylist: "تنزيل قائمة التشغيل",
+        navAbout: "معلومات عنا",
+        navFaq: "الأسئلة الشائعة",
+        qualityLabel: "الجودة",
+        defaultQuality: "الجودة الافتراضية",
+        bestQuality: "الأفضل (تلقائي)",
+        audioOnly: "صوت فقط",
+        videoFormat: "تنسيق الفيديو",
+        audioFormat: "تنسيق الصوت",
+        darkTheme: "مظهر داكن",
+        animations: "الرسوم المتحركة",
+        featuresTitle: "Why Freely?",
+        feat1Title: "1000+ Platforms",
+        feat1Desc: "Download media from YouTube, Instagram, TikTok and many more.",
+        feat2Title: "Unlimited & Free",
+        feat2Desc: "Download any media at the highest quality with no limits and no fees.",
+        feat3Title: "Secure & Private",
+        feat3Desc: "Your files are deleted from our servers immediately after download. You are completely safe.",
+        blogTitle: "Latest Posts",
+        viewAllBlog: "View All Posts",
+        faqTitle: "Frequently Asked Questions",
+        faqQ1: "Is Freely completely free?",
+        faqA1: "Yes, Freely is completely free and has no download limits.",
+        faqQ2: "Which platforms are supported?",
+        faqA2: "Over 1000 websites are supported, primarily YouTube, Instagram, TikTok, Twitter, Reddit, Facebook, and Twitch.",
+        faqQ3: "Are my downloaded videos stored on the server?",
+        faqA3: "No. Freely is privacy-focused. Your files are permanently deleted from the server shortly after being downloaded.",
+        footerText: "Copyright © 2026 - All rights reserved.",
+        madeBy: "Made with love by Aselens℠.",
+        howToUseTitle: "How to Use?",
+        aboutUsTitle: "About Us",
+
+        howToUse: "How to Use",
+        contactUs: "Contact",
+        terms: "Terms of Use",
+        privacy: "Privacy Policy",
         heroBadge: "أكثر من 1000 منصة مدعومة",
         heroTitle1: "تحميل الوسائط", heroTitle2: "بحرية", heroTitle3: "",
         heroSub: "احفظ المحتوى عالي الجودة من جميع وسائل التواصل إلى جهازك. بلا إعلانات وبلا حدود.",
@@ -198,13 +386,13 @@ const i18n = {
 };
 
 function t(key) {
-    return i18n[settings.lang][key] || i18n['tr'][key] || key;
+    const val = i18n[settings.lang][key]; return val !== undefined ? val : (i18n['tr'][key] || key);
 }
 
 function applyLanguage(lang, save = true) {
     if (!i18n[lang]) lang = 'tr';
     settings.lang = lang;
-    if (save) localStorage.setItem('aselens-lang', lang);
+    if (save) localStorage.setItem('freely-lang', lang);
 
     // Update texts
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -227,6 +415,114 @@ function applyLanguage(lang, save = true) {
 
 // ── Init ────────────────────────────────────────────────────
 async function init() {
+
+    const themeToggleMobile = document.getElementById('themeToggle');
+    if(themeToggleMobile) {
+        if (typeof themeToggleMobile !== 'undefined' && themeToggleMobile) themeToggleMobile.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const target = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', target);
+            localStorage.setItem('freely-theme', target);
+            const isDark = target === 'dark';
+            themeToggleMobile.querySelector('.sun-icon').style.display = isDark ? 'block' : 'none';
+            themeToggleMobile.querySelector('.moon-icon').style.display = isDark ? 'none' : 'block';
+            
+            // Also sync other theme toggles if they exist
+            if(document.getElementById('themeBtn')) {
+                document.getElementById('themeBtn').querySelector('.sun-icon').style.display = isDark ? 'block' : 'none';
+                document.getElementById('themeBtn').querySelector('.moon-icon').style.display = isDark ? 'none' : 'block';
+            }
+            if(document.getElementById('settingsThemeToggle')) {
+                const tog = document.getElementById('settingsThemeToggle');
+                tog.setAttribute('aria-checked', isDark ? 'true' : 'false');
+                if(isDark) tog.classList.add('active'); else tog.classList.remove('active');
+            }
+        });
+        
+        // Initial setup for the mobile button
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        themeToggleMobile.querySelector('.sun-icon').style.display = isDark ? 'block' : 'none';
+        themeToggleMobile.querySelector('.moon-icon').style.display = isDark ? 'none' : 'block';
+    }
+
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const headerActions = document.getElementById('headerActions');
+    if(mobileMenuBtn && headerActions) {
+        if (typeof mobileMenuBtn !== 'undefined' && mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => {
+            headerActions.classList.toggle('mobile-open');
+        });
+    }
+
+    // Check path for language routing
+    const pathLang = window.location.pathname.replace('/', '');
+    const validLangs = ['tr', 'en', 'es', 'ru', 'ar'];
+    if(validLangs.includes(pathLang)) {
+        applyLanguage(pathLang, false);
+    } else if (window.location.pathname === '/') {
+        // Auto detect and redirect
+        const browserLang = navigator.language.split('-')[0];
+        
+        const targetLang = validLangs.includes(browserLang) ? browserLang : 'en';
+        window.location.replace('/' + targetLang + window.location.hash);
+
+    }
+
+    // Accordion Logic
+    document.querySelectorAll('.accordion-header').forEach(btn => {
+        if (typeof btn !== 'undefined' && btn) btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+
+    // Fetch Blogs and Infinite Slider
+    if(document.getElementById('homeBlogGrid')) {
+        fetch('/api/blog').then(r => r.json()).then(blogs => {
+            const grid = document.getElementById('homeBlogGrid');
+            const lang = localStorage.getItem('freely-lang') || 'tr';
+            let langBlogs = blogs.filter(b => b.lang === lang || !b.lang);
+            if(langBlogs.length === 0) langBlogs = blogs; // fallback
+
+            let currentIndex = 0;
+
+            function renderSlider() {
+                if(langBlogs.length === 0) return;
+                const displayBlogs = [];
+                // Show up to 3 blogs. If less than 3, just show what we have.
+                const count = Math.min(3, langBlogs.length);
+                for(let i = 0; i < count; i++) {
+                    displayBlogs.push(langBlogs[(currentIndex + i) % langBlogs.length]);
+                }
+                
+                grid.innerHTML = displayBlogs.map(b => `
+                    <a href="/blog?id=${b.id}" class="blog-card">
+                        ${b.image ? `<img src="${b.image}" class="blog-cover" alt="Cover">` : ''}
+                        <h3>${b.title}</h3>
+                        <p>${b.content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</p>
+                        <div class="blog-meta">${new Date(b.date).toLocaleDateString()}</div>
+                    </a>
+                `).join('');
+            }
+            
+            renderSlider();
+
+            const nextBtn = document.getElementById('blogNext');
+            const prevBtn = document.getElementById('blogPrev');
+            if(nextBtn) nextBtn.onclick = () => { currentIndex = (currentIndex + 1) % langBlogs.length; renderSlider(); };
+            if(prevBtn) prevBtn.onclick = () => { currentIndex = (currentIndex - 1 + langBlogs.length) % langBlogs.length; renderSlider(); };
+            
+            // Auto slide every 5 seconds (Sonsuz kaydırma)
+            setInterval(() => {
+                if(nextBtn) nextBtn.click();
+            }, 5000);
+
+        }).catch(()=>{});
+    }
+
     // Track visit
     fetch('/api/stats/visit', { method: 'POST' }).catch(() => { });
 
@@ -234,28 +530,6 @@ async function init() {
     try {
         const res = await fetch('/api/config');
         const cfg = await res.json();
-
-        if (cfg.theme && !localStorage.getItem('aselens-theme')) {
-            settings.theme = cfg.theme;
-        }
-
-        if (cfg.adsenseScript) {
-            const adsContainers = document.querySelectorAll('.ads-container');
-            adsContainers.forEach(container => {
-                container.innerHTML = cfg.adsenseScript;
-                const scripts = container.getElementsByTagName('script');
-                for (let i = 0; i < scripts.length; i++) {
-                    const newScript = document.createElement('script');
-                    if (scripts[i].src) newScript.src = scripts[i].src;
-                    newScript.innerHTML = scripts[i].innerHTML;
-                    document.head.appendChild(newScript);
-                }
-            });
-        }
-
-        if (cfg.languages && cfg.languages.length > 0) {
-            buildLanguageDropdown(cfg.languages);
-        }
     } catch (e) { }
 
     applyLanguage(settings.lang, false);
@@ -305,7 +579,7 @@ function buildLanguageDropdown(langs) {
 function applyTheme(theme, save = true) {
     settings.theme = theme;
     html.setAttribute('data-theme', theme);
-    if (save) localStorage.setItem('aselens-theme', theme);
+    if (save) localStorage.setItem('freely-theme', theme);
 
     // Sync toggles
     const isDark = theme === 'dark';
@@ -320,8 +594,11 @@ function toggleTheme() {
 // ── Animations ──────────────────────────────────────────────
 function applyAnimations(enabled, save = true) {
     settings.animations = enabled;
-    if (save) localStorage.setItem('aselens-anim', enabled);
-    document.getElementById('particles').style.display = enabled ? 'block' : 'none';
+    if (save) localStorage.setItem('freely-anim', enabled);
+    const meshBg = document.querySelector('.mesh-bg');
+    if (meshBg) meshBg.style.display = enabled ? 'block' : 'none';
+    const particles = document.getElementById('particles');
+    if (particles) particles.style.display = enabled ? 'block' : 'none';
     animToggle.setAttribute('aria-checked', enabled ? 'true' : 'false');
     animToggle.classList.toggle('active', enabled);
 }
@@ -421,7 +698,7 @@ function updatePlatformBadge(url) {
     }
 
     const setBadge = (icon, name) => {
-        platformIcon.textContent = icon;
+        platformIcon.innerHTML = icon;
         platformName.textContent = name;
         platformBadge.classList.add('visible');
 
@@ -467,12 +744,12 @@ function buildCustomDropdown(formats, defaultIdx) {
 
         const badge = f.type === 'audio' ? 'SES' : (f.height ? `${f.height}p` : 'AUTO');
         item.innerHTML = `
-      <span class="custom-option-badge">${badge}</span>
+      
       <span class="custom-option-label">${f.label}</span>
       <svg class="custom-option-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
     `;
 
-        item.addEventListener('click', () => selectCustomOption(i));
+        if (typeof item !== 'undefined' && item) item.addEventListener('click', () => selectCustomOption(i));
         csDropdown.appendChild(item);
     });
 
@@ -528,7 +805,7 @@ function showToast(msg, type = 'info', duration = 4000) {
     toastCont.appendChild(toast);
     setTimeout(() => {
         toast.classList.add('toast-out');
-        toast.addEventListener('animationend', () => toast.remove(), { once: true });
+        if (typeof toast !== 'undefined' && toast) toast.addEventListener('animationend', () => toast.remove(), { once: true });
     }, duration);
 }
 
@@ -541,7 +818,7 @@ async function fetchMediaInfo(url) {
         const res = await fetch('/api/info', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ url })
+            body: JSON.stringify({ url, isPlaylist: window.IS_PLAYLIST_MODE || false })
         });
 
         if (!res.ok) {
@@ -568,7 +845,7 @@ async function fetchMediaInfo(url) {
             previewThumb.parentElement.style.display = 'none';
         }
 
-        previewDur.textContent = formatDuration(data.duration);
+        
 
         // Build format select
         let defaultIdx = 0;
@@ -584,7 +861,7 @@ async function fetchMediaInfo(url) {
 
         // Update platform badge from API data
         if (data.platform?.key) {
-            platformIcon.textContent = PLATFORM_ICONS[data.platform.key] || '🔗';
+            platformIcon.innerHTML = PLATFORM_ICONS[data.platform.key] || '🔗';
             platformName.textContent = data.platform.name;
             platformBadge.classList.add('visible');
         }
@@ -599,6 +876,11 @@ async function fetchMediaInfo(url) {
 
 // ── Download ─────────────────────────────────────────────────
 async function startDownload() {
+    if (window.hasAdBlocker) {
+        if (typeof showAdblockPopup === 'function') showAdblockPopup();
+        return;
+    }
+
     const url = urlInput.value.trim();
     const format = formatSelect.value;
     const isAudio = format === 'bestaudio';
@@ -619,7 +901,8 @@ async function startDownload() {
             codec: settings.videoCodec || 'auto',
             freeFormats: settings.freeFormats ? 'true' : 'false',
             sponsorBlock: settings.sponsorBlock ? 'true' : 'false',
-            embedSubs: settings.embedSubs ? 'true' : 'false'
+            embedSubs: settings.embedSubs ? 'true' : 'false',
+            isPlaylist: (typeof window !== 'undefined' && window.IS_PLAYLIST_MODE) ? 'true' : 'false'
         });
 
         const startRes = await fetch(`/api/download?${params}`);
@@ -682,23 +965,23 @@ function syncRadioChecked(group) {
 
 function bindSettingsInputs() {
     document.querySelectorAll('input[name="defaultQuality"]').forEach(r => {
-        r.addEventListener('change', () => {
+        if (typeof r !== 'undefined' && r) r.addEventListener('change', () => {
             settings.defaultQuality = r.value;
-            localStorage.setItem('aselens-quality', r.value);
+            localStorage.setItem('freely-quality', r.value);
             syncRadioChecked('defaultQuality');
         });
     });
     document.querySelectorAll('input[name="outputFormat"]').forEach(r => {
-        r.addEventListener('change', () => {
+        if (typeof r !== 'undefined' && r) r.addEventListener('change', () => {
             settings.outputFormat = r.value;
-            localStorage.setItem('aselens-format', r.value);
+            localStorage.setItem('freely-format', r.value);
             syncRadioChecked('outputFormat');
         });
     });
     document.querySelectorAll('input[name="audioFormat"]').forEach(r => {
-        r.addEventListener('change', () => {
+        if (typeof r !== 'undefined' && r) r.addEventListener('change', () => {
             settings.audioFormat = r.value;
-            localStorage.setItem('aselens-audio', r.value);
+            localStorage.setItem('freely-audio', r.value);
             syncRadioChecked('audioFormat');
         });
     });
@@ -724,12 +1007,12 @@ function closeSettingsPanel() {
 // ── Bind Events ──────────────────────────────────────────────
 function bindEvents() {
     // URL input – live platform detection
-    urlInput.addEventListener('input', () => {
+    if (typeof urlInput !== 'undefined' && urlInput) urlInput.addEventListener('input', () => {
         updatePlatformBadge(urlInput.value.trim());
     });
 
     // Paste from clipboard
-    pasteBtn.addEventListener('click', async () => {
+    if (typeof pasteBtn !== 'undefined' && pasteBtn) pasteBtn.addEventListener('click', async () => {
         try {
             const text = await navigator.clipboard.readText();
             if (text) {
@@ -747,7 +1030,7 @@ function bindEvents() {
     });
 
     // Form submit → fetch info
-    downloadForm.addEventListener('submit', (e) => {
+    if (typeof downloadForm !== 'undefined' && downloadForm) downloadForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const url = urlInput.value.trim();
         if (!url) { showToast(t('toastOptUrl'), 'error'); return; }
@@ -756,20 +1039,20 @@ function bindEvents() {
     });
 
     // Download
-    downloadBtn.addEventListener('click', startDownload);
+    if (typeof downloadBtn !== 'undefined' && downloadBtn) downloadBtn.addEventListener('click', startDownload);
 
     // Theme
-    themeBtn.addEventListener('click', toggleTheme);
-    settingsTheme.addEventListener('click', toggleTheme);
+    if (typeof themeBtn !== 'undefined' && themeBtn) themeBtn.addEventListener('click', toggleTheme);
+    if (typeof settingsTheme !== 'undefined' && settingsTheme) settingsTheme.addEventListener('click', toggleTheme);
 
     // Animations toggle
-    animToggle.addEventListener('click', () => {
+    if (typeof animToggle !== 'undefined' && animToggle) animToggle.addEventListener('click', () => {
         applyAnimations(!settings.animations);
     });
 
     // Custom dropdown
-    csTrigger.addEventListener('click', toggleCustomSelect);
-    csTrigger.addEventListener('keydown', (e) => {
+    if (typeof csTrigger !== 'undefined' && csTrigger) csTrigger.addEventListener('click', toggleCustomSelect);
+    if (typeof csTrigger !== 'undefined' && csTrigger) csTrigger.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCustomSelect(); }
         if (e.key === 'Escape') closeCustomSelect();
     });
@@ -778,9 +1061,9 @@ function bindEvents() {
     });
 
     // Settings open/close
-    settingsBtn.addEventListener('click', openSettings);
-    closeSettings.addEventListener('click', closeSettingsPanel);
-    settingsOverlay.addEventListener('click', closeSettingsPanel);
+    if (typeof settingsBtn !== 'undefined' && settingsBtn) settingsBtn.addEventListener('click', openSettings);
+    if (typeof closeSettings !== 'undefined' && closeSettings) closeSettings.addEventListener('click', closeSettingsPanel);
+    if (typeof settingsOverlay !== 'undefined' && settingsOverlay) settingsOverlay.addEventListener('click', closeSettingsPanel);
 
     // Keyboard: Escape closes settings
     document.addEventListener('keydown', (e) => {
@@ -798,7 +1081,7 @@ function bindEvents() {
         const dropdown = wrap.querySelector('.custom-select-dropdown');
 
         if (trigger) {
-            trigger.addEventListener('click', (e) => {
+            if (typeof trigger !== 'undefined' && trigger) trigger.addEventListener('click', (e) => {
                 e.stopPropagation();
                 document.querySelectorAll('.custom-select').forEach(s => {
                     if (s !== wrap && s.id !== 'customSelectWrap') s.classList.remove('open');
@@ -808,7 +1091,7 @@ function bindEvents() {
         }
 
         if (dropdown) {
-            dropdown.addEventListener('click', (e) => {
+            if (typeof dropdown !== 'undefined' && dropdown) dropdown.addEventListener('click', (e) => {
                 const opt = e.target.closest('.custom-option');
                 if (opt) {
                     const val = opt.dataset.value;
@@ -821,14 +1104,14 @@ function bindEvents() {
         }
     }
 
-    setupSelect('bitrateSelectWrap', 'audioBitrate', 'aselens-bitrate');
-    setupSelect('codecSelectWrap', 'videoCodec', 'aselens-codec');
+    setupSelect('bitrateSelectWrap', 'audioBitrate', 'freely-bitrate');
+    setupSelect('codecSelectWrap', 'videoCodec', 'freely-codec');
 
     const freeToggleEl = document.getElementById('freeFormatsToggle');
     if (freeToggleEl) {
-        freeToggleEl.addEventListener('click', () => {
+        if (typeof freeToggleEl !== 'undefined' && freeToggleEl) freeToggleEl.addEventListener('click', () => {
             settings.freeFormats = !settings.freeFormats;
-            localStorage.setItem('aselens-free', settings.freeFormats);
+            localStorage.setItem('freely-free', settings.freeFormats);
             freeToggleEl.setAttribute('aria-checked', settings.freeFormats ? 'true' : 'false');
             freeToggleEl.classList.toggle('active', settings.freeFormats);
         });
@@ -836,9 +1119,9 @@ function bindEvents() {
 
     const sponsorToggleEl = document.getElementById('sponsorBlockToggle');
     if (sponsorToggleEl) {
-        sponsorToggleEl.addEventListener('click', () => {
+        if (typeof sponsorToggleEl !== 'undefined' && sponsorToggleEl) sponsorToggleEl.addEventListener('click', () => {
             settings.sponsorBlock = !settings.sponsorBlock;
-            localStorage.setItem('aselens-sponsor', settings.sponsorBlock);
+            localStorage.setItem('freely-sponsor', settings.sponsorBlock);
             sponsorToggleEl.setAttribute('aria-checked', settings.sponsorBlock ? 'true' : 'false');
             sponsorToggleEl.classList.toggle('active', settings.sponsorBlock);
         });
@@ -846,9 +1129,9 @@ function bindEvents() {
 
     const subToggleEl = document.getElementById('embedSubsToggle');
     if (subToggleEl) {
-        subToggleEl.addEventListener('click', () => {
+        if (typeof subToggleEl !== 'undefined' && subToggleEl) subToggleEl.addEventListener('click', () => {
             settings.embedSubs = !settings.embedSubs;
-            localStorage.setItem('aselens-subs', settings.embedSubs);
+            localStorage.setItem('freely-subs', settings.embedSubs);
             subToggleEl.setAttribute('aria-checked', settings.embedSubs ? 'true' : 'false');
             subToggleEl.classList.toggle('active', settings.embedSubs);
         });
@@ -860,8 +1143,8 @@ function bindEvents() {
     const langDropdown = document.getElementById('langSelectDropdown');
 
     if (langTrigger) {
-        langTrigger.addEventListener('click', () => {
-            langWrap.classList.toggle('open');
+        langTrigger.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); langWrap.classList.toggle('open');
+            // toggle restored
         });
 
         langDropdown.addEventListener('click', (e) => {
@@ -895,3 +1178,20 @@ function bindEvents() {
 
 // ── Start ────────────────────────────────────────────────────
 init();
+
+
+// Slider Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const blogGrid = document.getElementById('homeBlogGrid');
+    const blogPrev = document.getElementById('blogPrev');
+    const blogNext = document.getElementById('blogNext');
+
+    if (blogGrid && blogPrev && blogNext) {
+        if (typeof blogPrev !== 'undefined' && blogPrev) blogPrev.addEventListener('click', () => {
+            blogGrid.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+        if (typeof blogNext !== 'undefined' && blogNext) blogNext.addEventListener('click', () => {
+            blogGrid.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+    }
+});

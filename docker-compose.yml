@@ -1,13 +1,13 @@
 services:
-  aselens:
+  freely:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: aselens
+    container_name: freely
     ports:
-      - "3169:3169"
+      - "8255:8255"
     environment:
-      - PORT=3169
+      - PORT=8255
       - NODE_ENV=production
     restart: unless-stopped
     # Optional: mount a volume for yt-dlp cookies (for private content)

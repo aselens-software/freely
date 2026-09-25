@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.svg" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freely - Yönetici Paneli</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        body { background: var(--bg-color); color: var(--text-primary); font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+        .dashboard { display: flex; min-height: 100vh; }
+        .sidebar { width: 250px; background: rgba(15, 23, 42, 0.9); border-right: 1px solid var(--border-color); padding: 20px; display: flex; flex-direction: column; }
+        .sidebar h2 { color: #FF00D0; font-size: 24px; margin-bottom: 40px; text-align: center; }
+        .nav-link { display: block; padding: 12px 15px; color: var(--text-secondary); text-decoration: none; border-radius: 8px; margin-bottom: 10px; transition: 0.3s; cursor: pointer;}
+        .nav-link:hover, .nav-link.active { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .main-content { flex: 1; padding: 40px; background: var(--bg-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: var(--card-bg); padding: 30px; border-radius: 16px; border: 1px solid var(--border-color); text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .stat-card h3 { font-size: 16px; color: var(--text-secondary); margin-bottom: 15px; }
+        .stat-card .value { font-size: 40px; font-weight: bold; background: linear-gradient(90deg, #533085, #FF00D0); -webkit-background-clip: text; color: transparent; }
+        
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; color: var(--text-secondary); font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2); color: var(--text-primary); outline: none; }
+        .form-group input:focus { border-color: #FF00D0; }
+        
+        .blog-list { margin-top: 20px; display: grid; gap: 15px; }
+        .blog-item { display: flex; justify-content: space-between; padding: 20px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border-color); align-items: center; }
+        
+        #editor-container { height: 300px; background: rgba(0,0,0,0.2); color: #fff; border-radius: 0 0 8px 8px; border-color: var(--border-color); }
+        .ql-toolbar { background: rgba(255,255,255,0.9); border-radius: 8px 8px 0 0; }
+        
+        .login-wrapper { display: flex; justify-content: center; align-items: center; height: 100vh; background: var(--bg-color); }
+        .login-box { background: var(--card-bg); padding: 40px; border-radius: 16px; border: 1px solid var(--border-color); width: 100%; max-width: 400px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <!-- Login -->
+    <div class="login-wrapper" id="loginSection">
+        <div class="login-box">
+            <h1 style="margin-bottom: 30px; font-size:24px;">Freely Panel</h1>
+            <div class="form-group">
+                <input type="password" id="adminPwd" placeholder="Admin Şifresi" style="text-align: center; font-size: 16px;">
+            </div>
+            <button class="btn" style="width: 100%; padding: 12px; font-size: 16px;" onclick="login()">Giriş Yap</button>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="adminSection" style="display: none;">
+        <aside class="sidebar">
+            <h2>Freely</h2>
+            <div class="nav-link active" onclick="switchTab('dashboard', this)">İstatistikler</div>
+            <div class="nav-link" onclick="switchTab('blogs', this)">Blog Yazıları</div>
+            <div class="nav-link" onclick="switchTab('new-blog', this)">Yeni Yazı Ekle</div>
+            <div class="nav-link" onclick="switchTab('settings', this)">Site Ayarları</div>
+            <div style="flex-grow: 1;"></div>
+            <a href="/" target="_blank" class="nav-link" style="text-align: center; background: #FF00D0; color: white;">Siteyi Görüntüle ↗</a>
+        </aside>
+
+        <main class="main-content">
+            <!-- Stats -->
+            <div id="tab-dashboard" class="tab-pane active">
+                <h1 style="margin-bottom: 30px;">Genel Bakış</h1>
+                <div class="stats-grid" id="statsGrid"></div>
+                <h2 style="margin-top: 40px; margin-bottom: 20px;">Platform Kullanımı</h2>
+                <div id="platformStats" style="display: flex; gap: 10px; flex-wrap: wrap;"></div>
+            </div>
+
+            <!-- Blogs List -->
+            <div id="tab-blogs" class="tab-pane">
+                <h1 style="margin-bottom: 30px;">Blog Yazıları</h1>
+                <div class="blog-list" id="blogList"></div>
+            </div>
+
+            <!-- New Blog -->
+            <div id="tab-new-blog" class="tab-pane">
+                <h1 style="margin-bottom: 30px;">Yeni Yazı Ekle</h1>
+                <div class="form-group">
+                    <label>Başlık</label>
+                    <input type="text" id="blogTitle" placeholder="Yazı Başlığı">
+                </div>
+                <div class="form-group">
+        <label>Etiketler (Virgülle Ayırın)</label>
+        <input type="text" id="blogTags" placeholder="Örn: instagram, video indir, ücretsiz">
+    </div>
+    <div class="form-group">
+        <label>Kapak Görseli (URL veya PC)</label>
+                    <div style="display: flex; gap: 10px;">
+        <input type="text" id="blogImage" placeholder="Resim URL'si" style="flex: 1;">
+        <input type="file" id="blogImageFile" accept="image/*" style="flex: 1;">
+    </div>
+                </div>
+                <div class="form-group">
+                    <label>İçerik</label>
+                    <div id="editor-container"></div>
+                </div>
+                <button class="btn" style="padding: 12px 30px; font-size: 16px;" onclick="addBlog()">Yayınla</button>
+            </div>
+
+            <!-- Settings -->
+            <div id="tab-settings" class="tab-pane">
+                <h1 style="margin-bottom: 30px;">Site Ayarları</h1>
+                
+                <div class="form-group">
+                    <label>Tema Rengi (light / dark)</label>
+                    <input type="text" id="configTheme" placeholder="dark">
+                </div>
+
+                <div class="form-group">
+                    <label>Google Adsense Kodu</label>
+                    <textarea id="configAdsense" rows="6" placeholder="<script async src='https://pagead2.googlesyndication.com/... crossorigin='anonymous'></script>"></textarea>
+                </div>
+                
+                <button class="btn" style="padding: 12px 30px; font-size: 16px;" onclick="saveSettings()">Ayarları Kaydet</button>
+                
+                <h2 style="margin-top: 40px; margin-bottom: 20px;">SEO & Araçlar</h2>
+                <div class="form-group" style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px;">
+                    <p style="color: var(--text-secondary); margin-bottom: 15px;">Sitemap.xml dosyasını (site haritası) manuel olarak yeniden oluşturmak ve güncellemek için bu butonu kullanın.</p>
+                    <button class="btn" style="background: var(--accent); font-weight: bold; width: 100%;" onclick="generateSitemap()">
+                        <i class="fa-solid fa-sitemap" style="margin-right: 8px;"></i>Sitemap Oluştur / Güncelle
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let token = '';
+        let quill;
+
+        
+        let editingId = null;
+        function editBlog(id) {
+            // Find the blog object from the current blogs list
+            fetch('/api/blog').then(r => r.json()).then(blogs => {
+                const b = blogs.find(x => x.id === id);
+                if (!b) return;
+                editingId = b.id;
+                document.getElementById('blogTitle').value = b.title;
+                document.getElementById('blogTags').value = b.tags ? b.tags.join(', ') : '';
+                document.getElementById('blogImage').value = b.image || '';
+                quill.root.innerHTML = b.content;
+                document.querySelectorAll('.nav-link')[2].click();
+                document.querySelector('#tab-new-blog h1').innerText = "Yazıyı Düzenle";
+            });
+        }
+
+
+
+        function initQuill() {
+            quill = new Quill('#editor-container', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['link', 'image'],
+                        ['clean']
+                    ]
+                }
+            });
+        }
+
+        function switchTab(tabId, el) {
+            document.querySelectorAll('.tab-pane').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function login() {
+            const pwd = document.getElementById('adminPwd').value;
+            fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: pwd })
+            }).then(r => r.json()).then(res => {
+                if(res.success) {
+                    token = res.token;
+                    document.getElementById('loginSection').style.display = 'none';
+                    document.getElementById('adminSection').style.display = 'flex';
+                    initQuill();
+                    loadData();
+                } else {
+                    alert('Hatalı şifre');
+                }
+            });
+        }
+
+        function loadData() {
+            // Load Stats
+            fetch('/api/admin/stats', { headers: { 'Authorization': token } })
+                .then(r => r.json())
+                .then(stats => {
+                    document.getElementById('statsGrid').innerHTML = `
+                        <div class="stat-card"><h3>Tekil Ziyaretçi</h3><div class="value">${stats.visits || 0}</div></div>
+                        <div class="stat-card"><h3>Tekil Ziyaretçi</h3><div class="value">${stats.visitedIPs ? stats.visitedIPs.length : 0}</div></div><div class="stat-card"><h3>Toplam İndirme</h3><div class="value">${stats.downloads || 0}</div></div>
+                    `;
+                });
+
+            // Load Blogs
+            fetch('/api/blog')
+                .then(r => r.json())
+                .then(blogs => {
+                    document.getElementById('blogList').innerHTML = blogs.map(b => `
+                        <div class="blog-item">
+                            <div style="display: flex; gap: 20px; align-items: center;">
+                                ${b.image ? `<img src="${b.image}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 8px;">` : ''}
+                                <div>
+                                    <strong style="font-size: 18px;">${b.title}</strong>
+                                    <div style="font-size: 13px; color: var(--text-secondary); margin-top: 5px;">${new Date(b.date).toLocaleDateString()}</div>
+                                </div>
+                            </div>
+                            <div style="display:flex; gap:10px;">
+        <button class="btn" style="padding: 8px 20px; background: rgba(83,48,133,0.2); color: #FF00D0; border: 1px solid #FF00D0;" onclick="editBlog('${b.id}')">Düzenle</button>
+        <button class="btn" style="padding: 8px 20px; background: rgba(255,0,0,0.2); color: #ff4444; border: 1px solid #ff4444;" onclick="deleteBlog('${b.id}')">Sil</button>
+    </div>
+                        </div>
+                    `).join('');
+                });
+
+            // Load Config
+            fetch('/api/admin/config', { headers: { 'Authorization': token } })
+                .then(r => r.json())
+                .then(cfg => {
+                    document.getElementById('configTheme').value = cfg.theme || 'dark';
+                    document.getElementById('configAdsense').value = cfg.adsenseScript || '';
+                });
+        }
+
+        function saveSettings() {
+            const theme = document.getElementById('configTheme').value;
+            const adsenseScript = document.getElementById('configAdsense').value;
+
+            // Get existing config to not overwrite unexposed fields (like adminPassword)
+            fetch('/api/admin/config', { headers: { 'Authorization': token } })
+                .then(r => r.json())
+                .then(cfg => {
+                    cfg.theme = theme;
+                    cfg.adsenseScript = adsenseScript;
+
+                    fetch('/api/admin/config', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': token },
+                        body: JSON.stringify(cfg)
+                    }).then(r => r.json()).then(res => {
+                        if (res.success) {
+                            alert('Ayarlar başarıyla kaydedildi!');
+                        } else {
+                            alert('Hata oluştu!');
+                        }
+                    });
+                });
+        }
+
+        function addBlog() {
+            const title = document.getElementById('blogTitle').value;
+            const tags = document.getElementById('blogTags').value;
+            const image = document.getElementById('blogImage').value;
+            const content = quill.root.innerHTML;
+            if(!title || quill.getText().trim().length === 0) return alert('Başlık ve içerik boş olamaz.');
+
+            fetch(editingId ? '/api/admin/blog/' + editingId : '/api/admin/blog', {
+                method: editingId ? 'PUT' : 'POST',
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Authorization': token },
+                body: JSON.stringify({ title, content, image, tags })
+            }).then(r => r.json()).then(res => {
+                if(res.success) {
+                    alert('Blog başarıyla yayınlandı!');
+                    document.getElementById('blogTitle').value = '';
+                    document.getElementById('blogTags').value = '';
+                    document.getElementById('blogImage').value = '';
+                    quill.setContents([]);
+                    loadData();
+                    document.querySelectorAll('.nav-link')[1].click(); document.querySelector('#tab-new-blog h1').innerText = 'Yeni Yazı Ekle'; editingId = null;
+                }
+            });
+        }
+
+        
+        function generateSitemap() {
+            fetch('/api/admin/sitemap', {
+                method: 'POST',
+                headers: { 'Authorization': token }
+            }).then(r => r.json()).then(res => {
+                if(res.success) {
+                    alert('Sitemap (site haritası) başarıyla oluşturuldu/güncellendi!');
+                } else {
+                    alert('Hata oluştu: ' + (res.message || 'Bilinmeyen Hata'));
+                }
+            }).catch(err => {
+                alert('Bağlantı hatası: ' + err.message);
+            });
+        }
+
+        function deleteBlog(id) {
+            if(!confirm('Bu blog yazısını silmek istediğinize emin misiniz?')) return;
+            fetch('/api/admin/blog/' + id, {
+                method: 'DELETE',
+                headers: { 'Authorization': token }
+            }).then(r => r.json()).then(res => {
+                if(res.success) loadData();
+            });
+        }
+    </script>
+</body>
+</html>

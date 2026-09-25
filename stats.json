@@ -1,9 +1,12 @@
 {
   "visits": 1,
-  "downloads": 0,
+  "downloads": 1,
   "visitedIPs": {
     "2026-03-02": [
       "::1"
     ]
+  },
+  "platforms": {
+    "soundcloud": 1
   }
 }
